@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: my-voice-ai-public
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DAILY_GENERATION_LIMIT
+        value: "10"
+      - key: DAILY_CLONE_LIMIT
+        value: "1"
+      - key: MAX_AUDIO_MB
+        value: "20"
